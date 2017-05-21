@@ -1,0 +1,14 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "quay.io/chsh/feedbot:master"
+  },
+  "Ports": [
+    { "ContainerPort": "3000" }
+  ],
+  "Authentication": {
+    "Bucket": "feedbot-system",
+    "Key": "docker-auth.config"
+  },
+  "Logging": "/var/log"
+}
