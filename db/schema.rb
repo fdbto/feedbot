@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521042450) do
+ActiveRecord::Schema.define(version: 20170521062527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feed_articles", force: :cascade do |t|
+    t.bigint "feed_id", null: false
+    t.string "guid", null: false
+    t.datetime "published_at", null: false
+    t.jsonb "data", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_feed_articles_on_created_at"
+    t.index ["feed_id", "guid"], name: "index_feed_articles_on_feed_id_and_guid", unique: true
+    t.index ["feed_id"], name: "index_feed_articles_on_feed_id"
+    t.index ["published_at"], name: "index_feed_articles_on_published_at"
+    t.index ["updated_at"], name: "index_feed_articles_on_updated_at"
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "slug", null: false
+    t.string "url", null: false
+    t.datetime "last_crawled_at"
+    t.jsonb "data", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data"], name: "index_feeds_on_data", using: :gin
+    t.index ["last_crawled_at"], name: "index_feeds_on_last_crawled_at"
+    t.index ["slug"], name: "index_feeds_on_slug", unique: true
+    t.index ["url"], name: "index_feeds_on_url", unique: true
+    t.index ["user_id"], name: "index_feeds_on_user_id"
+  end
 
   create_table "identities", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -54,5 +83,7 @@ ActiveRecord::Schema.define(version: 20170521042450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "feed_articles", "feeds"
+  add_foreign_key "feeds", "users"
   add_foreign_key "identities", "users"
 end

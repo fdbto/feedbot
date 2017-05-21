@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Feed:
+  = @feed_article.feed
+p
+  strong Guid:
+  = @feed_article.guid
+p
+  strong Published at:
+  = @feed_article.published_at
+p
+  strong Data:
+  = @feed_article.data
+
+= link_to 'Edit', edit_feed_article_path(@feed_article)
+'  |
+= link_to 'Back', feed_articles_path

@@ -10,4 +10,10 @@ class User < ApplicationRecord
       has_many :identities, dependent: :destroy
     end
   end
+
+  concerning :FeedFeature do
+    included do
+      has_many :feeds, dependent: :destroy
+    end
+  end
 end

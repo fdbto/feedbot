@@ -56,6 +56,9 @@ gem 'omniauth'
 gem 'omniauth-mastodon'
 gem 'mastodon-api', require: 'mastodon'
 
+# model + data related gems
+gem 'feedjira'
+
 # view + model related gems
 gem 'slim-rails'
 
