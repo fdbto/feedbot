@@ -1,0 +1,29 @@
+h1 Listing feeds
+
+table
+  thead
+    tr
+      th User
+      th Name
+      th Url
+      th Last crawled at
+      th Data
+      th
+      th
+      th
+
+  tbody
+    - @feeds.each do |feed|
+      tr
+        td = feed.user
+        td = feed.name
+        td = feed.url
+        td = feed.last_crawled_at
+        td = feed.data
+        td = link_to 'Show', feed
+        td = link_to 'Edit', edit_feed_path(feed)
+        td = link_to 'Destroy', feed, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Feed', new_feed_path

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :feeds
   resources :identities
   root to: 'root#index'
 

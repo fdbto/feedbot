@@ -9,5 +9,6 @@ class CreateIdentities < ActiveRecord::Migration[5.1]
       t.timestamps
     end
     add_index :identities, [:provider, :uid], unique: true
+    add_index :identities, :data, using: :gin
   end
 end
