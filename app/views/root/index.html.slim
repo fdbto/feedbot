@@ -1,4 +1,7 @@
-h1 Root#index
-p Find me in app/views/root/index.html.slim
+.container
+  h1 Root#index
+  p Find me in app/views/root/index.html.slim
 
-= link_to 'Auth by Mastodon', user_mastodon_omniauth_authorize_path
+  - unless user_signed_in?
+    = link_to 'Auth by Mastodon', user_mastodon_omniauth_authorize_path
+

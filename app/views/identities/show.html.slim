@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User:
+  = @identity.user
+p
+  strong Uid:
+  = @identity.uid
+p
+  strong Provider:
+  = @identity.provider
+p
+  strong Data:
+  = @identity.data
+
+= link_to 'Edit', edit_identity_path(@identity)
+'  |
+= link_to 'Back', identities_path

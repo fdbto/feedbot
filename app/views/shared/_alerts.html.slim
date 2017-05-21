@@ -1,0 +1,6 @@
+- if flash[:notice] || flash[:alert]
+  .container
+    - if flash[:notice]
+      p = flash[:notice]
+    - if flash[:alert]
+      p = flash[:alert]

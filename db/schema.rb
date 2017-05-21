@@ -10,17 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520153327) do
+ActiveRecord::Schema.define(version: 20170521042450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "mastodon_clients", force: :cascade do |t|
-    t.string "domain"
-    t.string "client_id"
-    t.string "client_secret"
+  create_table "identities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.jsonb "data", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "mastodon_clients", force: :cascade do |t|
+    t.string "domain", null: false
+    t.string "client_id", null: false
+    t.string "client_secret", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_mastodon_clients_on_created_at"
+    t.index ["domain"], name: "index_mastodon_clients_on_domain", unique: true
+    t.index ["updated_at"], name: "index_mastodon_clients_on_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +54,5 @@ ActiveRecord::Schema.define(version: 20170520153327) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "identities", "users"
 end
