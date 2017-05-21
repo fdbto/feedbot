@@ -1,7 +1,8 @@
 .container
-  h1 Root#index
-  p Find me in app/views/root/index.html.slim
+  h1 Coming soon
 
-  - unless user_signed_in?
+  - if user_signed_in?
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+  - else
     = link_to 'Auth by Mastodon', user_mastodon_omniauth_authorize_path
 

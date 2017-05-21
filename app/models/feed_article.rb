@@ -34,7 +34,7 @@ class FeedArticle < ActiveRecord::Base
       store_accessor :data, :title, :summary, :content, :url
     end
   end
-  
+
   concerning :PublishFeature do
     def publish
       feed.bot.toot title: self.title,
@@ -42,5 +42,4 @@ class FeedArticle < ActiveRecord::Base
         url: srlf.url
     end
   end
-    
 end
