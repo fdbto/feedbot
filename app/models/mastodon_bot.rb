@@ -1,3 +1,4 @@
+=begin
 class MadtodonBot < ApplicationRecord
   concerning :ConnectionFeature do
     def toot(params)
@@ -7,7 +8,7 @@ class MadtodonBot < ApplicationRecord
     end
     private
     def format_params(params)
-      
     end
   end
 end
+=end

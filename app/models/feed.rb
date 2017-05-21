@@ -38,15 +38,18 @@ class Feed < ActiveRecord::Base
       created_entries
     end
   end
-  
+
+=begin
   concerning :PublishFeature do
     included do
       has_one :bot, claa_name: 'MastodonBot',
       	dependent: :destroy
     end
-    
+
     def publish!
       publisher.publish article
     end
   end
+=end
 end
+f

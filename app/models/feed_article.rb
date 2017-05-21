@@ -23,8 +23,7 @@ class FeedArticle < ActiveRecord::Base
     end
     private
     def fill_key_fields
-      sel
-      f.guid = self.entry_id
+      self.guid = self.entry_id
       self.published_at = self.published
     end
   end
@@ -35,6 +34,7 @@ class FeedArticle < ActiveRecord::Base
     end
   end
 
+=begin
   concerning :PublishFeature do
     def publish
       feed.bot.toot title: self.title,
@@ -42,4 +42,5 @@ class FeedArticle < ActiveRecord::Base
         url: srlf.url
     end
   end
+=end
 end
