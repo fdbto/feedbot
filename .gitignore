@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-!/tmp/pids/.keep
+!/tmp/pids
 
 /node_modules
 /yarn-error.log
