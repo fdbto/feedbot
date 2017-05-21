@@ -1,0 +1,27 @@
+h1 Listing identities
+
+table
+  thead
+    tr
+      th User
+      th Uid
+      th Provider
+      th Data
+      th
+      th
+      th
+
+  tbody
+    - @identities.each do |identity|
+      tr
+        td = identity.user
+        td = identity.uid
+        td = identity.provider
+        td = identity.data
+        td = link_to 'Show', identity
+        td = link_to 'Edit', edit_identity_path(identity)
+        td = link_to 'Destroy', identity, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Identity', new_identity_path

@@ -1,0 +1,15 @@
+.container
+  nav.nav
+    .nav-left
+      = link_to root_path, class: 'nav-item is-brand' do
+        = image_tag 'feedbot-logo.jpg'
+        '
+        | Feedbot
+
+    span#nav-toggle.nav-toggle
+      span
+      span
+      span
+    #nav-menu.nav-right.nav-menu
+      - if user_signed_in?
+        = link_to current_user.email, '#', class: 'nav-item'

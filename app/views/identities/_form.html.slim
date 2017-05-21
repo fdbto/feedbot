@@ -1,0 +1,21 @@
+= form_for @identity do |f|
+  - if @identity.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@identity.errors.count, "error")} prohibited this identity from being saved:"
+      ul
+        - @identity.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :uid
+    = f.text_field :uid
+  .field
+    = f.label :provider
+    = f.text_field :provider
+  .field
+    = f.label :data
+    = f.text_field :data
+  .actions = f.submit

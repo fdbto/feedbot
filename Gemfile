@@ -49,3 +49,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# system related gems
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-mastodon'
+gem 'mastodon-api', require: 'mastodon'
+
+# model + data related gems
+gem 'feedjira'
+
+# view + model related gems
+gem 'slim-rails'
+
+# view related gems
+gem 'bulma-rails'
+gem 'font-awesome-rails'

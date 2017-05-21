@@ -1,0 +1,8 @@
+.container
+  h1 Coming soon
+
+  - if user_signed_in?
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+  - else
+    = link_to 'Auth by Mastodon', user_mastodon_omniauth_authorize_path
+

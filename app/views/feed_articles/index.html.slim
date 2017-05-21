@@ -1,0 +1,27 @@
+h1 Listing feed_articles
+
+table
+  thead
+    tr
+      th Feed
+      th Guid
+      th Published at
+      th Data
+      th
+      th
+      th
+
+  tbody
+    - @feed_articles.each do |feed_article|
+      tr
+        td = feed_article.feed
+        td = feed_article.guid
+        td = feed_article.published_at
+        td = feed_article.data
+        td = link_to 'Show', feed_article
+        td = link_to 'Edit', edit_feed_article_path(feed_article)
+        td = link_to 'Destroy', feed_article, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Feed article', new_feed_article_path
