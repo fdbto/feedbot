@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'health-check' => 'health_check#index'
+
   resources :feed_articles
   resources :feeds
   resources :identities
