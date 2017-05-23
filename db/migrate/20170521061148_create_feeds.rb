@@ -4,6 +4,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true, index: true
       t.string :slug, null: false
       t.string :url, null: false
+      t.string :avatar
       t.datetime :last_crawled_at
       t.jsonb :data, default: {}
 

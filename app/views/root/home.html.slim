@@ -1,5 +1,5 @@
-.container: .content
-  h1 Listing feeds
+.container
+  h1 Registered feeds
 
   table.table
     tr
@@ -12,7 +12,7 @@
     - @feeds.each do |feed|
       tr
         td = feed.slug
-        td = image_tag(feed.avatar.url(:thumb), size: '64x64')
+        td = image_tag(feed.avatar.url)
         td
           - if feed.bot.present?
             = link_to "https://fdb.to/@#{feed.bot.username}", "https://fdb.to/@#{feed.bot.username}"
@@ -21,6 +21,6 @@
         td = feed.title
         td = short_datetime(feed.created_at)
         td = short_datetime(feed.last_crawled_at)
-  br
+  hr
 
-  = link_to 'New Feed', new_feed_path
+  = link_to 'Register new feed', new_feed_path

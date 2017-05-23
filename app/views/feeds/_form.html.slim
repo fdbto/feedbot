@@ -5,20 +5,15 @@
       ul
         - @feed.errors.full_messages.each do |message|
           li = message
+  .field
+    = f.label :slug, class: 'label'
+    p.control = f.text_field :slug, class: 'input'
+  .field
+    = f.label :url, class: 'label'
+    p.control = f.text_field :url, class: 'input'
+  .field
+    = f.label :avatar, class: 'label'
+    p.control = f.file_field :avatar, class: 'input'
 
   .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :last_crawled_at
-    = f.datetime_select :last_crawled_at
-  .field
-    = f.label :data
-    = f.text_field :data
-  .actions = f.submit
+    p.control = f.submit class: 'button is-primary'

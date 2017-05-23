@@ -27,6 +27,7 @@ class Feed < ActiveRecord::Base
     def crawl
       feed = Feedjira::Feed.fetch_and_parse self.url
       set_keys_from(feed)
+      create_bot_from_feed if self.bot.blank?
       created_entries = []
       feed.entries.each do |entry|
         unless self.articles.guid(entry.id).first
@@ -39,16 +40,18 @@ class Feed < ActiveRecord::Base
     end
   end
 
-=begin
-  concerning :PublishFeature do
+  concerning :AvatarFeature do
     included do
-      has_one :bot, claa_name: 'MastodonBot',
-      	dependent: :destroy
-    end
-
-    def publish!
-      publisher.publish article
+      mount_uploader :avatar, AvatarUploader
     end
   end
-=end
+
+  concerning :BotFeature do
+    included do
+      has_one :bot, dependent: :destroy, class_name: 'FeedBot'
+    end
+    def create_bot_from_feed
+      self.bot ||= FeedBot.create username: self.slug
+    end
+  end
 end

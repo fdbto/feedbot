@@ -20,3 +20,5 @@
 .byebug_history
 
 .env
+
+/public/uploads/

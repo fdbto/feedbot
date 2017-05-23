@@ -1,21 +1,14 @@
-p#notice = notice
+.container: .content
+  p
+    strong Slug:
+    = @feed.slug
+  p
+    strong Url:
+    = @feed.url
+  p
+    strong Last crawled at:
+    = @feed.last_crawled_at
 
-p
-  strong User:
-  = @feed.user
-p
-  strong Name:
-  = @feed.name
-p
-  strong Url:
-  = @feed.url
-p
-  strong Last crawled at:
-  = @feed.last_crawled_at
-p
-  strong Data:
-  = @feed.data
-
-= link_to 'Edit', edit_feed_path(@feed)
-'  |
-= link_to 'Back', feeds_path
+  = link_to 'Edit', edit_feed_path(@feed)
+  '  |
+  = link_to 'Back', feeds_path

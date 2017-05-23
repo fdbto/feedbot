@@ -60,9 +60,14 @@ gem 'ruby_tweaks', git: 'https://github.com/chsh/ruby_tweaks.git'
 
 # model + data related gems
 gem 'feedjira'
+gem 'aasm'
 
 # view + model related gems
 gem 'slim-rails'
+gem 'gravatar_image_tag'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave-aws'
 
 # view related gems
 gem 'bulma-rails'
