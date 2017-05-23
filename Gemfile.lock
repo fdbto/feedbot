@@ -167,6 +167,7 @@ GEM
     pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
+    que (0.12.1)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -277,6 +278,7 @@ DEPENDENCIES
   omniauth-mastodon
   pg (~> 0.18)
   puma (~> 3.7)
+  que
   rails (~> 5.1.1)
   ruby_tweaks!
   sass-rails (~> 5.0)

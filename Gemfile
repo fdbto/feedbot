@@ -57,6 +57,7 @@ gem 'omniauth'
 gem 'omniauth-mastodon'
 gem 'mastodon-api', require: 'mastodon'
 gem 'ruby_tweaks', git: 'https://github.com/chsh/ruby_tweaks.git'
+gem 'que'
 
 # model + data related gems
 gem 'feedjira'
