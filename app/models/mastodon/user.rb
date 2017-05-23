@@ -1,7 +1,7 @@
 class Mastodon::User
   def self.username_exist?(username)
     command = <<EOL
-Account.where(username: "#{username}").exists?
+Account.where(username: #{q(username)}).exists?
 EOL
     RemoteCommandRunner.run(command)
   end
@@ -23,6 +23,15 @@ params = { account_attributes: {
          }
 user = User.create params
 { user: user, account: user.account }
+EOL
+    RemoteCommandRunner.run(command)
+  end
+
+  def self.toot(username, text)
+    command = <<EOL
+account = Account.find_by(username: #{q(username)})
+return false if account.blank?    
+PostStatusService.new.call(account, #{q(text)})
 EOL
     RemoteCommandRunner.run(command)
   end
