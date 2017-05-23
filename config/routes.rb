@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :feed_bots
+  resources :cron_jobs
   get 'health-check' => 'health_check#index'
+  post 'tick' => 'clock#tick'
 
   resources :feed_articles
   resources :feeds

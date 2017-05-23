@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523143909) do
+ActiveRecord::Schema.define(version: 20170523153646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cron_jobs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "schedule"
+    t.string "command"
+    t.datetime "next_run_at"
+    t.boolean "enabled", default: true
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_cron_jobs_on_created_at"
+    t.index ["enabled"], name: "index_cron_jobs_on_enabled"
+    t.index ["name"], name: "index_cron_jobs_on_name", unique: true
+    t.index ["next_run_at"], name: "index_cron_jobs_on_next_run_at"
+    t.index ["updated_at"], name: "index_cron_jobs_on_updated_at"
+  end
 
   create_table "feed_articles", force: :cascade do |t|
     t.bigint "feed_id", null: false
@@ -48,14 +64,18 @@ ActiveRecord::Schema.define(version: 20170523143909) do
     t.string "url", null: false
     t.string "avatar"
     t.datetime "last_crawled_at"
+    t.datetime "will_crawled_at"
     t.jsonb "data", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_feeds_on_created_at"
     t.index ["data"], name: "index_feeds_on_data", using: :gin
     t.index ["last_crawled_at"], name: "index_feeds_on_last_crawled_at"
     t.index ["slug"], name: "index_feeds_on_slug", unique: true
+    t.index ["updated_at"], name: "index_feeds_on_updated_at"
     t.index ["url"], name: "index_feeds_on_url", unique: true
     t.index ["user_id"], name: "index_feeds_on_user_id"
+    t.index ["will_crawled_at"], name: "index_feeds_on_will_crawled_at"
   end
 
   create_table "identities", force: :cascade do |t|

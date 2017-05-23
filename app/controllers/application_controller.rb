@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
       Rails.env.production?
     end
   end
+
+  concerning :AdminFeature do
+    def verify_admin
+      throw :abort unless user_signed_in?
+      throw :abort unless admin_emails.include?(current_user.email)
+    end
+    private
+    def admin_emails
+      ENV['ADMIN_EMAILS'].strip.split(/\s*,\s*/)
+    end
+  end
 end

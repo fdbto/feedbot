@@ -24,7 +24,15 @@ class Feed < ActiveRecord::Base
     end
   end
   concerning :CrawlFeature do
-    def crawl
+    included do
+      scope :crawlable, -> now = nil {
+        now ||= Time.zone.now
+        where('will_crawled_at >= ?', now)
+      }
+    end
+    def crawl(force = false)
+      self.will_crawled_at = nil if force
+      return [] if self.will_crawled_at < UTC.now
       feed = Feedjira::Feed.fetch_and_parse self.url
       set_keys_from(feed)
       create_bot_from_feed if self.bot.blank?
@@ -35,8 +43,10 @@ class Feed < ActiveRecord::Base
         end
       end
       self.last_crawled_at = UTC.now
+      interval = (5 + rand(10)).minutes
+      self.will_crawled_at = self.last_crawled_at + interval # set randomly 5 ~ 15 min interval.
       self.save!
-      created_entries
+      created_entries.sort { |a,b| a.published_at <=> b.published_at }
     end
   end
 

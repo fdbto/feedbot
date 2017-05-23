@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @cron_job.name
+p
+  strong Schedule:
+  = @cron_job.schedule
+p
+  strong Command:
+  = @cron_job.command
+p
+  strong Next run at:
+  = @cron_job.next_run_at
+p
+  strong Enabled:
+  = @cron_job.enabled
+p
+  strong Description:
+  = @cron_job.description
+
+= link_to 'Edit', edit_cron_job_path(@cron_job)
+'  |
+= link_to 'Back', cron_jobs_path
