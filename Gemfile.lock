@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/chsh/ruby_tweaks.git
+  revision: 3c97825bb0c57ae6c91bb1db679b7a178f0af56b
+  specs:
+    ruby_tweaks (0.0.22)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -246,6 +253,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.1)
+  ruby_tweaks!
   sass-rails (~> 5.0)
   slim-rails
   spring

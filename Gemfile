@@ -56,6 +56,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-mastodon'
 gem 'mastodon-api', require: 'mastodon'
+gem 'ruby_tweaks', git: 'https://github.com/chsh/ruby_tweaks.git'
 
 # model + data related gems
 gem 'feedjira'
