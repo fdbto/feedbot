@@ -16,9 +16,13 @@ class FeedBot < ApplicationRecord
     end
     private
     def link_to_mastodon
+      display_name = self.title
+      if self.feed.verified?
+        display_name += " \u2705"
+      end
       params = {
           username: self.username,
-          display_name: self.title,
+          display_name: display_name,
           note: self.description,
           url: self.url
       }

@@ -5,6 +5,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
       t.string :slug, null: false
       t.string :url, null: false
       t.string :avatar
+      t.boolean :verified, default: false
       t.datetime :last_crawled_at
       t.datetime :will_crawled_at
       t.jsonb :data, default: {}
@@ -13,6 +14,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
     end
     add_index :feeds, :slug, unique: true
     add_index :feeds, :url, unique: true
+    add_index :feeds, :verified
     add_index :feeds, :last_crawled_at
     add_index :feeds, :will_crawled_at
     add_index :feeds, :data, using: :gin

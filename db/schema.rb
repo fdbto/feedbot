@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170523153646) do
     t.string "slug", null: false
     t.string "url", null: false
     t.string "avatar"
+    t.boolean "verified", default: false
     t.datetime "last_crawled_at"
     t.datetime "will_crawled_at"
     t.jsonb "data", default: {}
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170523153646) do
     t.index ["updated_at"], name: "index_feeds_on_updated_at"
     t.index ["url"], name: "index_feeds_on_url", unique: true
     t.index ["user_id"], name: "index_feeds_on_user_id"
+    t.index ["verified"], name: "index_feeds_on_verified"
     t.index ["will_crawled_at"], name: "index_feeds_on_will_crawled_at"
   end
 
