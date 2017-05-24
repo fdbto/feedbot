@@ -32,5 +32,7 @@ module Feedbot
       g.assets false
       g.helper false
     end
+
+    config.lograge.enabled = true
   end
 end
