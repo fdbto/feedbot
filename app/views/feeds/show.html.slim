@@ -1,10 +1,13 @@
 .container: .content
   p
-    strong Slug:
+    strong Username:
     = @feed.slug
   p
     strong Url:
     = @feed.url
+  p
+    strong Avatar:
+    = image_tag @feed.avatar.url(:thumb), size: '64x64'
   p
     strong Last crawled at:
     = @feed.last_crawled_at

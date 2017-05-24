@@ -19,7 +19,7 @@ class Feed < ActiveRecord::Base
     private
     def set_keys_from(feed)
       FEED_KEYS.each do |key|
-        self.data[key] = feed.send(key) if feed.respond_to?(key)
+        self.send("#{key}=", feed.send(key)) if feed.respond_to?(key)
       end
     end
   end
@@ -31,15 +31,25 @@ class Feed < ActiveRecord::Base
       }
     end
     class_methods do
-      def crawl_all
+      def crawl_and_notify_all
         self.find_each do |feed|
           FeedCrawlingJob.perform_later(feed.id)
         end
       end
     end
+    def crawl_and_notify
+      if self.bot.present?
+        entries = crawl
+        notify_entries(entries)
+      else
+        entries = crawl
+        self.bot.toot("@#{self.user.email}\nI was born to love you! :smile:")
+        notify_entries([entries.last])
+      end
+    end
     def crawl(force = false)
       self.will_crawled_at = nil if force
-      return [] if self.will_crawled_at < UTC.now
+      return [] if self.will_crawled_at.present? && self.will_crawled_at < UTC.now
       feed = Feedjira::Feed.fetch_and_parse self.url
       set_keys_from(feed)
       create_bot_from_feed if self.bot.blank?
@@ -54,6 +64,9 @@ class Feed < ActiveRecord::Base
       self.will_crawled_at = self.last_crawled_at + interval # set randomly 5 ~ 15 min interval.
       self.save!
       created_entries.sort { |a,b| a.published_at <=> b.published_at }
+    end
+    def notify_entries(entries)
+      self.bot.notify_entries(entries)
     end
   end
 

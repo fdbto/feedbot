@@ -6,7 +6,7 @@
         - @feed.errors.full_messages.each do |message|
           li = message
   .field
-    = f.label :slug, class: 'label'
+    = f.label :slug, 'Username(should be unique in https://fdb.to/)', class: 'label'
     p.control = f.text_field :slug, class: 'input'
   .field
     = f.label :url, class: 'label'
