@@ -31,6 +31,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     imagemagick@edge \
     tzdata \
  && bundle install --jobs 20 --retry 5 --without test development \
+ && npm install -g yarn \
  && update-ca-certificates \
  && apk del $BUILD_DEPS \
  && rm -rf /tmp/* /var/cache/apk/*
