@@ -30,6 +30,13 @@ class Feed < ActiveRecord::Base
         where('will_crawled_at >= ?', now)
       }
     end
+    class_methods do
+      def crawl_all
+        self.find_each do |feed|
+          FeedCrawlingJob.perform_later(feed.id)
+        end
+      end
+    end
     def crawl(force = false)
       self.will_crawled_at = nil if force
       return [] if self.will_crawled_at < UTC.now

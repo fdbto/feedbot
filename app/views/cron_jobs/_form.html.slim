@@ -7,21 +7,24 @@
           li = message
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.label :name, class: 'label'
+    p.control = f.text_field :name, class: 'input'
   .field
-    = f.label :schedule
-    = f.text_field :schedule
+    = f.label :schedule, class: 'label'
+    p.control = f.text_field :schedule, class: 'input'
   .field
-    = f.label :command
-    = f.text_field :command
+    = f.label :command, class: 'label'
+    p.control = f.text_field :command, class: 'input'
   .field
-    = f.label :next_run_at
-    = f.datetime_select :next_run_at
+    = f.label :next_run_at, class: 'label'
+    p.control = f.text_field :next_run_at, class: 'input'
   .field
-    = f.label :enabled
-    = f.check_box :enabled
+    = f.label :enabled, class: 'label'
+    p.control = f.check_box :enabled, class: 'checkbox'
   .field
-    = f.label :description
-    = f.text_area :description
-  .actions = f.submit
+    = f.label :description, class: 'label'
+    p.control = f.text_area :description, class: 'input'
+  .field
+    p.control
+      button.button.is-primary Submit
+

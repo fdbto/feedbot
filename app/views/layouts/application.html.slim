@@ -8,4 +8,7 @@ html
   body
     = render 'shared/header'
     = render 'shared/alerts'
-    = yield
+    - if @no_container
+      = yield
+    - else
+      .container = yield
