@@ -51,18 +51,29 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# core gems
+gem 'webpacker', github: 'rails/webpacker'
+
 # system related gems
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-mastodon'
 gem 'mastodon-api', require: 'mastodon'
 gem 'ruby_tweaks', git: 'https://github.com/chsh/ruby_tweaks.git'
+gem 'que'
+gem 'que-web'
+gem 'parse-cron'
 
 # model + data related gems
 gem 'feedjira'
+gem 'aasm'
 
 # view + model related gems
 gem 'slim-rails'
+gem 'gravatar_image_tag'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave-aws'
 
 # view related gems
 gem 'bulma-rails'

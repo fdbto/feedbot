@@ -1,0 +1,26 @@
+.container
+  h1 Registered feeds
+
+  table.table
+    tr
+      th Slug
+      th Avatar
+      th Bot
+      th Title
+      th Created at
+      th Last crawled at
+    - @feeds.each do |feed|
+      tr
+        td = feed.slug
+        td = image_tag(feed.avatar.url(:thumb), size: '64x64') if feed.avatar.present?
+        td
+          - if feed.bot.present?
+            = link_to "https://fdb.to/@#{feed.bot.username}", "https://fdb.to/@#{feed.bot.username}"
+          - else
+            | Never crawled
+        td = feed.title
+        td = short_datetime(feed.created_at)
+        td = short_datetime(feed.last_crawled_at)
+  hr
+
+  = link_to 'Register new feed', new_feed_path

@@ -1,0 +1,31 @@
+h1 Listing cron_jobs
+
+table.table
+  thead
+    tr
+      th Name
+      th Schedule
+      th Command
+      th Next run at
+      th Enabled
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @cron_jobs.each do |cron_job|
+      tr
+        td = cron_job.name
+        td = cron_job.schedule
+        td = cron_job.command
+        td = cron_job.next_run_at
+        td = cron_job.enabled
+        td = cron_job.description
+        td = link_to 'Show', cron_job
+        td = link_to 'Edit', edit_cron_job_path(cron_job)
+        td = link_to 'Destroy', cron_job, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Cron job', new_cron_job_path

@@ -2,7 +2,7 @@ FROM ruby:2.4.1-alpine
 
 ENV RAILS_ENV production
 ENV RACK_ENV production
-ENV SECRET_KEY_BASE 7a2d358205ceb39544e2fbb869258d40099075825ed08004afe5d7d9eb4792d5d7f05960c02fa3b7949137365aa0e8c9114b8818de474c21bbda7a82f67c3cc6
+ENV SECRET_KEY_BASE 1
 
 RUN mkdir /app
 
@@ -31,6 +31,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     imagemagick@edge \
     tzdata \
  && bundle install --jobs 20 --retry 5 --without test development \
+ && npm install -g yarn \
  && update-ca-certificates \
  && apk del $BUILD_DEPS \
  && rm -rf /tmp/* /var/cache/apk/*

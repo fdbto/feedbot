@@ -5,20 +5,23 @@
       ul
         - @feed.errors.full_messages.each do |message|
           li = message
+  .field
+    = f.label :slug, 'Username(should be unique in https://fdb.to/) [required]', class: 'label'
+    p.control = f.text_field :slug, class: 'input'
+  .field
+    = f.label :url, 'URL [required]', class: 'label'
+    p.control = f.text_field :url, class: 'input'
+  .field
+    = f.label :verified, 'This blog is owned by me', class: 'label'
+    p.control = f.check_box :verified, class: 'checkbox'
+  .field
+    = f.label :avatar, 'Avatar image', class: 'label'
+    p.control = f.file_field :avatar, class: 'input'
+  .field
+    p OR
+  .field
+    = f.label :remote_avatar_url, 'Avatar image URL', class: 'label'
+    p.control = f.text_field :remote_avatar_url, class: 'input'
 
   .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :last_crawled_at
-    = f.datetime_select :last_crawled_at
-  .field
-    = f.label :data
-    = f.text_field :data
-  .actions = f.submit
+    p.control = f.submit class: 'button is-primary'

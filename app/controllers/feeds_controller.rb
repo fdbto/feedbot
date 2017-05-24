@@ -1,10 +1,11 @@
 class FeedsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
   # GET /feeds
   # GET /feeds.json
   def index
-    @feeds = Feed.all
+    @feeds = current_user.feeds.recently_created
   end
 
   # GET /feeds/1
@@ -14,7 +15,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/new
   def new
-    @feed = Feed.new
+    @feed = Feed.new bot: FeedBot.new
   end
 
   # GET /feeds/1/edit
@@ -24,7 +25,7 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    @feed = Feed.new(feed_params)
+    @feed = current_user.feeds.new(feed_params)
 
     respond_to do |format|
       if @feed.save
@@ -62,13 +63,13 @@ class FeedsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feed
-      @feed = Feed.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_feed
+    @feed = Feed.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def feed_params
-      params.require(:feed).permit(:user_id, :name, :url, :last_crawled_at, :data)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def feed_params
+    params.require(:feed).permit(:slug, :url, :avatar, :remote_avatar_url, :verified)
+  end
 end

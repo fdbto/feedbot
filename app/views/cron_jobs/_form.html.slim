@@ -1,0 +1,30 @@
+= form_for @cron_job do |f|
+  - if @cron_job.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@cron_job.errors.count, "error")} prohibited this cron_job from being saved:"
+      ul
+        - @cron_job.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name, class: 'label'
+    p.control = f.text_field :name, class: 'input'
+  .field
+    = f.label :schedule, class: 'label'
+    p.control = f.text_field :schedule, class: 'input'
+  .field
+    = f.label :command, class: 'label'
+    p.control = f.text_field :command, class: 'input'
+  .field
+    = f.label :next_run_at, class: 'label'
+    p.control = f.text_field :next_run_at, class: 'input'
+  .field
+    = f.label :enabled, class: 'label'
+    p.control = f.check_box :enabled, class: 'checkbox'
+  .field
+    = f.label :description, class: 'label'
+    p.control = f.text_area :description, class: 'input'
+  .field
+    p.control
+      button.button.is-primary Submit
+

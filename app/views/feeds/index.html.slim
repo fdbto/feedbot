@@ -1,29 +1,27 @@
-h1 Listing feeds
+.container: .content
+  h1 Listing feeds
 
-table
-  thead
+  table.table
     tr
-      th User
-      th Name
-      th Url
+      th Slug
+      th Avatar
+      th Bot
+      th Title
+      th Created at
       th Last crawled at
-      th Data
-      th
-      th
-      th
-
-  tbody
     - @feeds.each do |feed|
       tr
-        td = feed.user
-        td = feed.name
-        td = feed.url
-        td = feed.last_crawled_at
-        td = feed.data
-        td = link_to 'Show', feed
-        td = link_to 'Edit', edit_feed_path(feed)
-        td = link_to 'Destroy', feed, data: { confirm: 'Are you sure?' }, method: :delete
+        td = feed.slug
+        td
+          = image_tag(feed.avatar.url(:thumb), size: '64x64') if feed.avatar.present?
+        td
+          - if feed.bot.present?
+            = link_to "https://fdb.to/@#{feed.bot.username}", "https://fdb.to/@#{feed.bot.username}"
+          - else
+            | Never crawled
+        td = feed.title
+        td = short_datetime(feed.created_at)
+        td = short_datetime(feed.last_crawled_at)
+  br
 
-br
-
-= link_to 'New Feed', new_feed_path
+  = link_to 'New Feed', new_feed_path
