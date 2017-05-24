@@ -34,7 +34,7 @@ class CronJob < ActiveRecord::Base
 
   private
   def set_next_run_at
-    next_recently_time = self.parser.next(Service.now)
+    next_recently_time = self.parser.next(Time.zone.now)
     self.next_run_at ||= next_recently_time
   end
 end
