@@ -6,6 +6,9 @@
     strong Url:
     = @feed.url
   p
+    strong Verified:
+    = @feed.verified? ? "\u2705" : ''
+  p
     strong Avatar:
     = image_tag(@feed.avatar.url(:thumb), size: '64x64') if @feed.avatar.present?
   p

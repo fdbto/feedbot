@@ -7,6 +7,7 @@
       th Avatar
       th Bot
       th Title
+      th Verified
       th Created at
       th Last crawled at
     - @feeds.each do |feed|
@@ -19,6 +20,7 @@
           - else
             | Never crawled
         td = feed.title
+        td = feed.verified? ? "\u2705" : ''
         td = short_datetime(feed.created_at)
         td = short_datetime(feed.last_crawled_at)
   hr
