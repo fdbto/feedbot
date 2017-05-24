@@ -5,6 +5,15 @@ GIT
     ruby_tweaks (0.0.22)
       activesupport
 
+GIT
+  remote: https://github.com/rails/webpacker.git
+  revision: 158987a82b605b534bcdc9468efca2602313c791
+  specs:
+    webpacker (1.2)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -305,6 +314,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker!
 
 BUNDLED WITH
    1.14.6
