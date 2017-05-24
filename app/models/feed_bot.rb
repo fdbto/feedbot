@@ -16,11 +16,14 @@ class FeedBot < ApplicationRecord
     end
     private
     def link_to_mastodon
-      r = Mastodon::User.create username: self.username,
-                                display_name: self.title,
-                                note: self.description,
-                                url: self.url,
-                                avatar_url: self.feed.avatar.url(:thumb)
+      params = {
+          username: self.username,
+          display_name: self.title,
+          note: self.description,
+          url: self.url
+      }
+      params[:avatar_url] = self.feed.avatar.url(:thumb) if self.feed.avatar.present?
+      r = Mastodon::User.create params
       throw :abort if r[:response].status != 200
     end
   end

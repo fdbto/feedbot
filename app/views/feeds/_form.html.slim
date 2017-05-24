@@ -14,6 +14,11 @@
   .field
     = f.label :avatar, class: 'label'
     p.control = f.file_field :avatar, class: 'input'
+  .field
+    p OR
+  .field
+    = f.label :remote_avatar_url, class: 'label'
+    p.control = f.text_field :remote_avatar_url, class: 'input'
 
   .field
     p.control = f.submit class: 'button is-primary'

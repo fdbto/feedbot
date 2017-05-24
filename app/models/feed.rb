@@ -29,6 +29,7 @@ class Feed < ActiveRecord::Base
         now ||= Time.zone.now
         where('will_crawled_at >= ?', now)
       }
+      after_create_commit :run_initial_crawl
     end
     class_methods do
       def crawl_and_notify_all
@@ -67,6 +68,10 @@ class Feed < ActiveRecord::Base
     end
     def notify_entries(entries)
       self.bot.notify_entries(entries)
+    end
+    private
+    def run_initial_crawl
+      FeedCrawlingJob.perform_later(self.id)
     end
   end
 

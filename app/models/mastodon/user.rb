@@ -15,12 +15,12 @@ params = { account_attributes: {
              username: #{q(params[:username])},
              display_name: #{q(params[:display_name])},
              note: #{q(params[:note])},
-             url: #{q(params[:url])},
-             avatar: URI.parse(#{q(params[:avatar_url])}) 
+             url: #{q(params[:url])}
            },
            email: #{q(email)}, password: #{q(password)},
            confirmed_at: Time.zone.now
          }
+params[:avatar] = URI.parse(#{q(params[:avatar_url])}) if #{q(params[:avatar_url])}.present?
 user = User.create params
 { user: user, account: user.account }
 EOL

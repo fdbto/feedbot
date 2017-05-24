@@ -7,7 +7,7 @@
     = @feed.url
   p
     strong Avatar:
-    = image_tag @feed.avatar.url(:thumb), size: '64x64'
+    = image_tag(@feed.avatar.url(:thumb), size: '64x64') if @feed.avatar.present?
   p
     strong Last crawled at:
     = @feed.last_crawled_at
