@@ -27,7 +27,7 @@ class Feed < ActiveRecord::Base
     included do
       scope :crawlable, -> now = nil {
         now ||= Time.zone.now
-        where('will_crawled_at >= ?', now)
+        where('will_crawled_at <= ?', now)
       }
       after_create_commit :run_initial_crawl
     end
