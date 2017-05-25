@@ -3,16 +3,18 @@
 
   table.table
     tr
-      th Slug
+      th Username
       th Avatar
       th Bot
       th Title
       th Verified
       th Created at
       th Last crawled at
+      th Will crawled at
+      th Num articles crawled
     - @feeds.each do |feed|
       tr
-        td = feed.slug
+        td = link_to feed.slug, feed
         td = image_tag(feed.avatar.url(:thumb), size: '64x64') if feed.avatar.present?
         td
           - if feed.bot.present?
@@ -23,6 +25,8 @@
         td = feed.verified? ? "\u2705" : ''
         td = short_datetime(feed.created_at)
         td = short_datetime(feed.last_crawled_at)
+        td = short_datetime(feed.will_crawled_at)
+        td = feed.articles.count.to_s(:delimited)
   hr
 
   = link_to 'Register new feed', new_feed_path
