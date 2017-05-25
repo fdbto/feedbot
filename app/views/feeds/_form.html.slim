@@ -23,5 +23,8 @@
     = f.label :remote_avatar_url, 'Avatar image URL', class: 'label'
     p.control = f.text_field :remote_avatar_url, class: 'input'
 
-  .field
-    p.control = f.submit class: 'button is-primary'
+  .field.is-grouped
+    p.control
+      = f.submit class: 'button is-primary'
+    p.control
+      = link_to 'CANCEL', feeds_path, class: 'button is-link'

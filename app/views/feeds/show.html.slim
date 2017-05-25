@@ -23,4 +23,8 @@
       th Num crawled articles
       td = @feed.articles.count.to_s(:delimited)
   hr
-  = link_to 'Back', feeds_path
+  div
+    span = link_to 'Back', feeds_path, class: 'button is-primary'
+    span(style="float: right")
+      = link_to 'DELETE', @feed, method: :delete,
+              class: 'button is-danger', data: { confirm: "Delete this feed?" }
