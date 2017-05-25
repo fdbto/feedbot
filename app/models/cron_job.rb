@@ -11,8 +11,10 @@ class CronJob < ActiveRecord::Base
 
   def self.tick!
     now = UTC.now + 3.seconds
-    self.enabled.runnable(now).lock(true).each do |cron|
-      cron.run!
+    CronJob.with_advisory_lock 'CronJob#tick!', timeout_seconds: 0 do
+      self.enabled.runnable(now).each do |cron|
+        cron.run!
+      end
     end
   end
 

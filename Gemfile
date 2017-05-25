@@ -54,6 +54,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # core gems
 gem 'webpacker', github: 'rails/webpacker'
 gem 'lograge'
+gem 'with_advisory_lock'
 
 # system related gems
 gem 'devise'

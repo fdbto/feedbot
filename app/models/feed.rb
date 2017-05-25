@@ -39,13 +39,15 @@ class Feed < ActiveRecord::Base
       end
     end
     def crawl_and_notify
-      if self.bot.present?
-        entries = crawl
-        notify_entries(entries)
-      else
-        entries = crawl
-        self.bot.toot("Hi, @#{self.user.email}, \nI was born to love you! :smile:")
-        notify_entries([entries.last])
+      Feed.with_advisory_lock "Feed(#{self.id})", timeout_seconds: 0 do
+        if self.bot.present?
+          entries = crawl
+          notify_entries(entries)
+        else
+          entries = crawl
+          self.bot.toot("Hi, @#{self.user.email}, \nI was born to love you! :smile:")
+          notify_entries([entries.last])
+        end
       end
     end
     def crawl(force = false)
