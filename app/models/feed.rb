@@ -46,7 +46,7 @@ class Feed < ActiveRecord::Base
         else
           entries = crawl
           self.bot.toot("Hi, @#{self.user.email}, \nI was born to love you! :smile:")
-          notify_entries([entries.last])
+          notify_entries([entries.last]) if entries.present?
         end
       end
     end
