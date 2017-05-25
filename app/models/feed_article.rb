@@ -33,12 +33,17 @@ class FeedArticle < ActiveRecord::Base
       store_accessor :data, :title, :summary, :content, :url, :links
     end
     def content_text
-      @content_text ||= begin
-        Nokogiri::HTML(self.content).text.
-          gsub(/\n/, ' ').
-          gsub(/^\s+/, '').gsub(/\s+$/, '').
-          gsub(/\s{2,}/, ' ')
-      end
+      @content_text ||= clean_text_with_html(self.content)
+    end
+    def title_text
+      @title_text ||= clean_text_with_html(self.title)
+    end
+    private
+    def clean_text_with_html(text)
+      Nokogiri::HTML(text).text.
+        gsub(/\n/, ' ').
+        gsub(/^\s+/, '').gsub(/\s+$/, '').
+        gsub(/\s{2,}/, ' ')
     end
   end
 end
