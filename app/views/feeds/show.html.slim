@@ -1,20 +1,26 @@
-.container: .content
-  p
-    strong Username:
-    = @feed.slug
-  p
-    strong Url:
-    = @feed.url
-  p
-    strong Verified:
-    = @feed.verified? ? "\u2705" : ''
-  p
-    strong Avatar:
-    = image_tag(@feed.avatar.url(:thumb), size: '64x64') if @feed.avatar.present?
-  p
-    strong Last crawled at:
-    = @feed.last_crawled_at
-
-  = link_to 'Edit', edit_feed_path(@feed)
-  '  |
+.content
+  table.table
+    tr
+      th Username:
+      td = @feed.slug
+    tr
+      th URL:
+      td = link_to @feed.url, @feed.url
+    tr
+      th Verified:
+      td = @feed.verified? ? "\u2705" : ''
+    - @feed.avatar.present?
+      tr
+        th Avatar:
+        td = image_tag(@feed.avatar.url(:thumb), size: '64x64')
+    tr
+      th Last crawled at:
+      td = short_datetime @feed.last_crawled_at
+    tr
+      th Will crawled at:
+      td = short_datetime @feed.will_crawled_at
+    tr
+      th Num crawled articles
+      td = @feed.articles.count.to_s(:delimited)
+  hr
   = link_to 'Back', feeds_path
