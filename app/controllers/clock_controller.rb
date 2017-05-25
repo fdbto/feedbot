@@ -6,7 +6,8 @@ class ClockController < ApplicationController
   end
   private
   def verify_authorized_access
-    raise unless request.headers['Authorization-Token'] ==
+    authorization_token = request.headers['Authorization-Token']
+    raise "Authorization Token not match. param:#{authorization_token}" unless authorization_token ==
         ENV['CLOCK_TICK_AUTHORIZATION_TOKEN']
   end
 end
