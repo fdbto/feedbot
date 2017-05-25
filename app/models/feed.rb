@@ -52,7 +52,7 @@ class Feed < ActiveRecord::Base
     end
     def crawl(force = false)
       self.will_crawled_at = nil if force
-      return [] unless self.will_crawled_at.present? && self.will_crawled_at < UTC.now
+      return [] unless do_crawl?
       feed = Feedjira::Feed.fetch_and_parse self.url
       set_keys_from(feed)
       create_bot_from_feed if self.bot.blank?
@@ -74,6 +74,10 @@ class Feed < ActiveRecord::Base
     private
     def run_initial_crawl
       FeedCrawlingJob.perform_later(self.id)
+    end
+    def do_crawl?
+      return true if self.will_crawled_at.blank? # initial state
+      self.will_crawled_at < UTC.now # crawling time comes?
     end
   end
 
