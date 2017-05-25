@@ -1,4 +1,5 @@
 class ClockController < ApplicationController
+  protect_from_forgery except: :tick
   before_action :verify_authorized_access
   def tick
     TickCronJob.perform_later
