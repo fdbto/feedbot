@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 158987a82b605b534bcdc9468efca2602313c791
+  revision: 7fb2e3b9058d18e269c9f58af36cc097b29de9de
   specs:
-    webpacker (1.2)
+    webpacker (2.0)
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
@@ -59,13 +59,13 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
-    aws-sdk (2.9.23)
-      aws-sdk-resources (= 2.9.23)
-    aws-sdk-core (2.9.23)
+    aws-sdk (2.9.24)
+      aws-sdk-resources (= 2.9.24)
+    aws-sdk-core (2.9.24)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.23)
-      aws-sdk-core (= 2.9.23)
+    aws-sdk-resources (2.9.24)
+      aws-sdk-core (= 2.9.24)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -80,9 +80,9 @@ GEM
     carrierwave-aws (1.1.0)
       aws-sdk (~> 2.0)
       carrierwave (>= 0.7, < 2.0)
-    coffee-rails (4.2.1)
+    coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.2.x)
+      railties (>= 4.0.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
