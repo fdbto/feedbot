@@ -24,3 +24,5 @@
 /public/uploads/
 /public/packs
 /node_modules
+
+/deploy/Dockerrun.aws.json
