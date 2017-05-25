@@ -90,6 +90,7 @@ class Feed < ActiveRecord::Base
   concerning :BotFeature do
     included do
       has_one :bot, dependent: :destroy, class_name: 'FeedBot'
+      validates :slug, presence: true, length: { maximum: 30 }
     end
     def create_bot_from_feed
       self.bot ||= FeedBot.create username: self.slug

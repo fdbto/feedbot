@@ -9,6 +9,7 @@ class FeedBot < ApplicationRecord
 
   concerning :MastodonFeature do
     included do
+      validates :username, presence: true, length: { maximum: 30 }
       after_create :link_to_mastodon
     end
     def toot(text)
@@ -23,7 +24,7 @@ class FeedBot < ApplicationRecord
       params = {
           username: self.username,
           display_name: display_name,
-          note: self.description,
+          note: self.description[0,160],
           url: self.url
       }
       params[:avatar_url] = self.feed.avatar.url(:thumb) if self.feed.avatar.present?
