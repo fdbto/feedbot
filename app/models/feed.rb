@@ -52,7 +52,7 @@ class Feed < ActiveRecord::Base
     end
     def crawl(force = false)
       self.will_crawled_at = nil if force
-      return [] if self.will_crawled_at.present? && self.will_crawled_at < UTC.now
+      return [] unless self.will_crawled_at.present? && self.will_crawled_at < UTC.now
       feed = Feedjira::Feed.fetch_and_parse self.url
       set_keys_from(feed)
       create_bot_from_feed if self.bot.blank?
