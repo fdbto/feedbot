@@ -42,7 +42,7 @@ class FeedBot < ApplicationRecord
     end
     def format_entry(entry)
       title = entry.title
-      url = entry.url
+      url = entry.url || entry.links.try(:first)
       content_max_length = 500 - (title.length + url.length + 2)
       content = entry.content_text[0, content_max_length]
       text = <<EOL

@@ -30,7 +30,7 @@ class FeedArticle < ActiveRecord::Base
 
   concerning :DataAccessorFeature do
     included do
-      store_accessor :data, :title, :summary, :content, :url
+      store_accessor :data, :title, :summary, :content, :url, :links
     end
     def content_text
       @content_text ||= begin
