@@ -11,14 +11,9 @@ class CronJob < ActiveRecord::Base
 
   def self.tick!
     now = UTC.now + 3.seconds
-    cron_jobs = self.enabled.runnable(now).to_a
-    cron_jobs.each do |cron|
+    self.enabled.runnable(now).lock(true).each do |cron|
       cron.run!
     end
-    cron_jobs.each { |cron_job|
-      cron_job.next_run_at = nil
-      cron_job.save!
-    }
   end
 
   def parser
