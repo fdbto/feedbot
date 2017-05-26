@@ -65,6 +65,7 @@ gem 'ruby_tweaks', git: 'https://github.com/chsh/ruby_tweaks.git'
 gem 'que'
 gem 'que-web'
 gem 'parse-cron'
+gem 'ostatus2'
 
 # model + data related gems
 gem 'feedjira'
