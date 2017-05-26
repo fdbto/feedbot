@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 7fb2e3b9058d18e269c9f58af36cc097b29de9de
+  revision: 7c773e8cc433b7f99f0fe76dfa1cf6bfd2f0dd9f
   specs:
     webpacker (2.0)
       activesupport (>= 4.2)
@@ -59,13 +59,13 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
-    aws-sdk (2.9.24)
-      aws-sdk-resources (= 2.9.24)
-    aws-sdk-core (2.9.24)
+    aws-sdk (2.9.25)
+      aws-sdk-resources (= 2.9.25)
+    aws-sdk-core (2.9.25)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.24)
-      aws-sdk-core (= 2.9.24)
+    aws-sdk-resources (2.9.25)
+      aws-sdk-core (= 2.9.25)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
