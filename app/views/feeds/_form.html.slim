@@ -22,7 +22,9 @@
   .field
     = f.label :remote_avatar_url, 'Avatar image URL', class: 'label'
     p.control = f.text_field :remote_avatar_url, class: 'input'
-
+  .field
+    = f.label :follow_bot_form, 'Follow created bot', class: 'label'
+    p.control = f.check_box :follow_bot_form, class: 'checkbox'
   .field.is-grouped
     p.control
       = f.submit class: 'button is-primary'

@@ -137,4 +137,16 @@ class Feed < ApplicationRecord
       has_one :subscription, dependent: :destroy
     end
   end
+
+  concerning :FollowFeature do
+    included do
+      store_accessor :data, :follow_bot
+    end
+    def follow_bot_form
+      self.follow_bot
+    end
+    def follow_bot_form=(value)
+      self.follow_bot = booleanize(value)
+    end
+  end
 end

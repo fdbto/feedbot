@@ -29,7 +29,14 @@ class FeedBot < ApplicationRecord
       }
       params[:avatar_url] = self.feed.avatar.url(:thumb) if self.feed.avatar.present?
       r = Mastodon::User.create params
+      follow_bot
       throw :abort if r[:response].status != 200
+    end
+    private
+    def follow_bot
+      return nil unless self.feed.follow_bot
+      identity = feed.user.identities.mastodon.first
+      identity.client.remote_follow "#{self.username}@fdb.to"
     end
   end
 

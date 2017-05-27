@@ -39,4 +39,20 @@ class Identity < ApplicationRecord
       end
     end
   end
+
+  concerning :ClientFeature do
+    def client
+      @client ||= send("#{self.provider}_client")
+    end
+  end
+  concerning :MastodonFeature do
+    included do
+      scope :mastodon, -> { where(provider: 'mastodon') }
+    end
+    def mastodon_client
+      uri = URI.parse(self.data.path('/info/urls/Profile'))
+      base_url = "#{uri.scheme}://#{uri.host}"
+      Mastodon::REST::Client.new base_url: base_url, bearer_token: self.data.path('/credentials/token')
+    end
+  end
 end

@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/new
   def new
-    @feed = Feed.new bot: FeedBot.new
+    @feed = Feed.new bot: FeedBot.new, follow_bot: true
   end
 
   # GET /feeds/1/edit
