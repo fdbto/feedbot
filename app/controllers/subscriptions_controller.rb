@@ -25,7 +25,7 @@ class SubscriptionsController < ApplicationController
       body = request.raw_post
       signature = request.env['HTTP_X_HUB_SIGNATURE']
       if @subscription.verify_signature(body, signature)
-        @subscription.feed.receive_raw(body)
+        @subscription.feed.receive_and_notify(body)
       end
       head :no_content
     end
