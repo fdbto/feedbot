@@ -111,7 +111,7 @@ class Feed < ApplicationRecord
       guid2article = self.articles.where(guid: entry_ids).select('id, guid').index_by(&:guid)
       feed.entries.each do |entry|
         if guid2article[entry.id].blank?
-          new_entries << self.articles.guid(entry.id).create_from_entry!(entry)
+          new_entries << self.articles.create_from_entry!(entry)
         end
       end
       new_entries.sort { |a,b| a.published_at <=> b.published_at }

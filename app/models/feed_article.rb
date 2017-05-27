@@ -2,29 +2,21 @@ class FeedArticle < ApplicationRecord
   belongs_to :feed
   concerning :KeyFields do
     included do
-      store_accessor :data, :entry_id, :published
-      before_save :fill_key_fields
       scope :guid, -> guid { where(guid: guid) }
     end
     class_methods do
       def create_from_entry!(entry)
         instance = new
-        entry.each do |key, value|
-          instance.data[key] = value
-        end
+        instance.data = entry.to_h
+        instance.send :fill_key_fields, guid: entry.id, published_at: entry.published
         instance.save!
         instance
       end
     end
-    def params=(params)
-      params.each do |key, value|
-        self.data[key] = value
-      end
-    end
     private
-    def fill_key_fields
-      self.guid = self.entry_id
-      self.published_at = self.published
+    def fill_key_fields(params = {})
+      self.guid = params[:guid]
+      self.published_at = params[:published_at]
     end
   end
 
