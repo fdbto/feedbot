@@ -80,8 +80,8 @@ class Feed < ApplicationRecord
     def prepare_subscription
       return false unless self.hub.present?
       return false unless self.subscription.blank?
+      self.create_subscription.register!
       Feed.transaction do
-        self.create_subscription.register!
         self.will_crawled_at = nil
         self.save!
       end
