@@ -22,10 +22,10 @@ table.table
         td = cron_job.next_run_at
         td = cron_job.enabled
         td = cron_job.description
-        td = link_to 'Show', cron_job
-        td = link_to 'Edit', edit_cron_job_path(cron_job)
-        td = link_to 'Destroy', cron_job, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Show', [:admin, cron_job]
+        td = link_to 'Edit', edit_admin_cron_job_path(cron_job)
+        td = link_to 'Destroy', [:admin, cron_job], data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Cron job', new_cron_job_path
+= link_to 'Admin top', admin_path

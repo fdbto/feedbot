@@ -1,5 +1,3 @@
-p#notice = notice
-
 p
   strong Name:
   = @cron_job.name
@@ -19,6 +17,6 @@ p
   strong Description:
   = @cron_job.description
 
-= link_to 'Edit', edit_cron_job_path(@cron_job)
+= link_to 'Edit', edit_admin_cron_job_path(@cron_job)
 '  |
-= link_to 'Back', cron_jobs_path
+= link_to 'Back', admin_cron_jobs_path

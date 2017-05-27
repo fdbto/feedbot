@@ -78,6 +78,7 @@ gem 'gravatar_image_tag'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-aws'
+gem 'kaminari'
 
 # view related gems
 gem 'bulma-rails'

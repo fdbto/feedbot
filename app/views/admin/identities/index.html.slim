@@ -1,0 +1,23 @@
+h1 Listing identities
+
+table.table
+  thead
+    tr
+      th Provider
+      th UID
+      th
+      th
+      th
+
+  tbody
+    - @identities.each do |identity|
+      tr
+        td = identity.provider
+        td = identity.uid
+        td = link_to 'Show', [:admin, identity.user, identity]
+        td = link_to 'Destroy', [:admin, identity.user, identity],
+                data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'Admin top', admin_path

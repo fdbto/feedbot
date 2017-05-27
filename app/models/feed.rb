@@ -151,4 +151,10 @@ class Feed < ApplicationRecord
       self.follow_bot = booleanize(value)
     end
   end
+
+  concerning :SortFeature do
+    included do
+      scope :recently_posted, -> { order(last_posted_at: :desc) }
+    end
+  end
 end
