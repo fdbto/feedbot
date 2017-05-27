@@ -1,0 +1,20 @@
+
+p
+  strong Provider:
+  = @identity.provider
+p
+  strong UID:
+  = @identity.uid
+p
+  strong Data:
+  pre = JSON.pretty_generate(@identity.data)
+
+p
+  strong Created at
+  = short_datetime @identity.created_at
+
+
+= link_to 'Admin top', admin_path
+'
+' >
+= link_to 'Users', admin_users_path

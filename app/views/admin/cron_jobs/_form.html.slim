@@ -1,4 +1,4 @@
-= form_for @cron_job do |f|
+= form_for [:admin, @cron_job] do |f|
   - if @cron_job.errors.any?
     #error_explanation
       h2 = "#{pluralize(@cron_job.errors.count, "error")} prohibited this cron_job from being saved:"
@@ -27,4 +27,3 @@
   .field
     p.control
       button.button.is-primary Submit
-

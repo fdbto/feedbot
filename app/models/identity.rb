@@ -1,4 +1,5 @@
 class Identity < ApplicationRecord
+  include TimeScope
   belongs_to :user
 
   concerning :OmnituahtRegistrationFeature do

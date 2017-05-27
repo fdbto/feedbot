@@ -1,5 +1,4 @@
-class CronJobsController < ApplicationController
-  before_action :verify_admin
+class Admin::CronJobsController < Admin::BaseController
   before_action :set_cron_job, only: [:show, :edit, :update, :destroy]
 
   # GET /cron_jobs
@@ -29,7 +28,7 @@ class CronJobsController < ApplicationController
 
     respond_to do |format|
       if @cron_job.save
-        format.html { redirect_to @cron_job, notice: 'Cron job was successfully created.' }
+        format.html { redirect_to [:admin, @cron_job], notice: 'Cron job was successfully created.' }
         format.json { render :show, status: :created, location: @cron_job }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class CronJobsController < ApplicationController
   def update
     respond_to do |format|
       if @cron_job.update(cron_job_params)
-        format.html { redirect_to @cron_job, notice: 'Cron job was successfully updated.' }
+        format.html { redirect_to [:admin, @cron_job], notice: 'Cron job was successfully updated.' }
         format.json { render :show, status: :ok, location: @cron_job }
       else
         format.html { render :edit }
@@ -57,19 +56,19 @@ class CronJobsController < ApplicationController
   def destroy
     @cron_job.destroy
     respond_to do |format|
-      format.html { redirect_to cron_jobs_url, notice: 'Cron job was successfully destroyed.' }
+      format.html { redirect_to admin_cron_jobs_url, notice: 'Cron job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cron_job
-      @cron_job = CronJob.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cron_job
+    @cron_job = CronJob.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cron_job_params
-      params.require(:cron_job).permit(:name, :schedule, :command, :next_run_at, :enabled, :description)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cron_job_params
+    params.require(:cron_job).permit(:name, :schedule, :command, :next_run_at, :enabled, :description)
+  end
 end

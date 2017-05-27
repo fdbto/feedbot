@@ -27,5 +27,11 @@ Rails.application.routes.draw do
   }
 
   get '/admin', to: 'admin#index', as: :admin
-  resources :cron_jobs
+  namespace :admin do
+    resources :users do
+      resources :identities
+      resources :feeds
+    end
+    resources :cron_jobs
+  end
 end

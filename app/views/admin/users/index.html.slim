@@ -1,0 +1,28 @@
+h1 Listing users
+
+table.table
+  thead
+    tr
+      th Mastodon ID
+      th Num Identities
+      th Num feeds
+      th Created at
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.email
+        td
+          ul
+            - user.identities.each do |identity|
+              li = link_to identity.provider, [:admin, user, identity]
+        td = link_to user.feeds.count.to_s(:delimited), [:admin, user, :feeds]
+        td = short_datetime user.created_at
+        td = link_to 'Destroy', [:admin, user], data: { confirm: 'Are you sure?' }, method: :delete
+
+= paginate @users
+
+br
+
+= link_to 'Admin top', admin_path
