@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
       ENV['ADMIN_EMAILS'].strip.split(/\s*,\s*/)
     end
   end
+
+  concerning :NotFoundFeature do
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
 end

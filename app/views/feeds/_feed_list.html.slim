@@ -1,0 +1,26 @@
+table.table
+  tr
+    th Username
+    th Avatar
+    th Bot
+    th Title
+    th Verified
+    th Last posted at
+    th Num crawled articles
+  - @feeds.each do |feed|
+    tr
+      td = link_to feed.slug, feed
+      td
+        = image_tag(feed.avatar.url(:thumb), size: '32x32') if feed.avatar.present?
+      td
+        - if feed.bot.present?
+          = link_to "@#{feed.bot.username}", "https://fdb.to/@#{feed.bot.username}"
+        - else
+          | Never crawled
+      td
+        = feed.title
+        - if feed.subscription.present?
+          =< "\u{26A1}"
+      td = feed.verified? ? "\u2705" : ''
+      td = short_datetime(feed.last_crawled_at)
+      td = feed.articles.count.to_s(:delimited)

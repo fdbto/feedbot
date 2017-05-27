@@ -1,4 +1,4 @@
-class CronJob < ActiveRecord::Base
+class CronJob < ApplicationRecord
   include TimeScope
   before_save :set_next_run_at
 

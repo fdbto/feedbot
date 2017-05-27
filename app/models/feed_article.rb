@@ -1,4 +1,4 @@
-class FeedArticle < ActiveRecord::Base
+class FeedArticle < ApplicationRecord
   belongs_to :feed
   concerning :KeyFields do
     included do
