@@ -22,5 +22,5 @@ table.table
         - if feed.subscription.present?
           =< "\u{26A1}"
       td = feed.verified? ? "\u2705" : ''
-      td = short_datetime(feed.last_crawled_at)
+      td = short_datetime(feed.last_posted_at)
       td = feed.articles.count.to_s(:delimited)

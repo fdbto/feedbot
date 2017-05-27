@@ -74,6 +74,7 @@ class Feed < ApplicationRecord
     end
     def notify_entries(entries)
       self.bot.notify_entries(entries)
+      self.update!(last_posted_at: UTC.now) if entries.present?
     end
     private
     def prepare_subscription
