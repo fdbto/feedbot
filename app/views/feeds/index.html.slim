@@ -15,7 +15,7 @@
       tr
         td = link_to feed.slug, feed
         td
-          = image_tag(feed.avatar.url(:thumb), size: '64x64') if feed.avatar.present?
+          = image_tag(feed.avatar.url(:thumb), size: '32x32') if feed.avatar.present?
         td
           - if feed.bot.present?
             = link_to "@#{feed.bot.username}", "https://fdb.to/@#{feed.bot.username}"

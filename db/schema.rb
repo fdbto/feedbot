@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523153646) do
+ActiveRecord::Schema.define(version: 20170526022843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,19 @@ ActiveRecord::Schema.define(version: 20170523153646) do
     t.text "queue", default: "", null: false
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "feed_id"
+    t.string "secret"
+    t.string "hub"
+    t.boolean "subscribed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_subscriptions_on_created_at"
+    t.index ["feed_id"], name: "index_subscriptions_on_feed_id"
+    t.index ["subscribed"], name: "index_subscriptions_on_subscribed"
+    t.index ["updated_at"], name: "index_subscriptions_on_updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -134,4 +147,5 @@ ActiveRecord::Schema.define(version: 20170523153646) do
   add_foreign_key "feed_bots", "feeds"
   add_foreign_key "feeds", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "subscriptions", "feeds"
 end

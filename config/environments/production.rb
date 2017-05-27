@@ -89,3 +89,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+Rails.application.routes.default_url_options[:protocol] = ENV.fetch('DEFAULT_PROTOCOL') { 'https' }
+Rails.application.routes.default_url_options[:host] = ENV.fetch('DEFAULT_HOST') { 'feedbot.ch' }
