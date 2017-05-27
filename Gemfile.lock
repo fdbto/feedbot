@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 7c773e8cc433b7f99f0fe76dfa1cf6bfd2f0dd9f
+  revision: 8e6f568bd93c9995a7ab48f3e8c30c4ba45019e8
   specs:
     webpacker (2.0)
       activesupport (>= 4.2)
@@ -333,4 +333,4 @@ DEPENDENCIES
   with_advisory_lock
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
