@@ -8,12 +8,14 @@ class Identity < ApplicationRecord
         if user.present?
           if identity.present?
             raise "user:#{user.id} it not match for identity.user.id=#{identity.user_id}" unless user == identity.user
+            identity.update! data: auth
             identity
           else
             user.identities.create provider: auth.provider, uid: auth.uid, data: auth
           end
         else
           if identity.present?
+            identity.update! data: auth
             identity
           else
             Identity.create provider: auth.provider, uid: auth.uid, data: auth,
