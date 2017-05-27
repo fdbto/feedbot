@@ -107,8 +107,10 @@ class Feed < ApplicationRecord
     end
     def collect_new_entries(feed)
       new_entries = []
+      entry_ids = feed.entries.map(&:id)
+      guid2article = self.articles.where(guid: entry_ids).select('id, guid').index_by(&:guid)
       feed.entries.each do |entry|
-        unless self.articles.guid(entry.id).first
+        if guid2article[entry.id].blank?
           new_entries << self.articles.guid(entry.id).create_from_entry!(entry)
         end
       end
