@@ -39,7 +39,7 @@ class Feed < ApplicationRecord
     class_methods do
       def crawl_and_notify_all
         self.find_each do |feed|
-          send_later(:crawl_and_notify)
+          feed.send_later(:crawl_and_notify)
         end
       end
     end
