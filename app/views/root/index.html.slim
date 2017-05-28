@@ -9,4 +9,5 @@
   h2 Recent active feeds
   .columns
     .column = render partial: 'feed_card', collection: @recent_active_feeds, as: :feed
+  .columns
     .column.is-pulled-right = link_to 'more', public_feeds_path

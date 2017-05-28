@@ -9,4 +9,5 @@
         p.subtitle.is-6 = link_to "@#{feed.slug}", "https://fdb.to/@#{feed.slug}", target: '_blank'
     .content
       = feed.description
+      br
       small = short_datetime feed.last_posted_at

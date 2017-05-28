@@ -1,9 +1,12 @@
 class RootController < ApplicationController
   def index
-    redirect_to home_path if user_signed_in?
     @recent_active_feeds = Feed.recently_posted.limit(5)
   end
   def home
-    redirect_to root_path unless user_signed_in?
+    if user_signed_in?
+      @feeds = current_user.feeds.recently_created.page(params[:page])
+    else
+      redirect_to root_path
+    end
   end
 end
