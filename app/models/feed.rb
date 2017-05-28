@@ -173,4 +173,11 @@ class Feed < ApplicationRecord
       scope :recently_posted, -> { where.not(last_posted_at: nil).order(last_posted_at: :desc) }
     end
   end
+
+  concerning :PermissionFeature do
+    included do
+      scope :in_public, -> { where(private: false) }
+      scope :in_private, -> { where(private: true) }
+    end
+  end
 end

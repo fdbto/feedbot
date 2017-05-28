@@ -3,7 +3,7 @@ class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
   def public
-    @feeds = Feed.recently_posted.page(params[:page])
+    @feeds = Feed.in_public.recently_posted.page(params[:page])
   end
 
   # GET /feeds

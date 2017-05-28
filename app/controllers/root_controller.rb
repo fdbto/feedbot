@@ -1,6 +1,6 @@
 class RootController < ApplicationController
   def index
-    @recent_active_feeds = Feed.recently_posted.limit(5)
+    @recent_active_feeds = Feed.in_public.recently_posted.limit(5)
   end
   def home
     if user_signed_in?
