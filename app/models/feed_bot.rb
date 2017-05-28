@@ -50,14 +50,22 @@ class FeedBot < ApplicationRecord
     def format_entry(entry)
       title = entry.title_text
       url = entry.url || entry.links.try(:first)
-      content_max_length = 500 - (title.length + url.length + 2)
+      short_url = goo_gl!(url)
+      content_max_length = 500 - (title.length + short_url.length + 2)
       content = entry.content_text[0, content_max_length]
       text = <<EOL
 #{title}
 #{content}
-#{url}
+#{short_url}
 EOL
       text.chomp
+    end
+  end
+  concerning :ShortenUrlFeature do
+    def goo_gl!(long_url)
+      Google::UrlShortener::Base.api_key = ENV['GOOGLE_API_KEY']
+      url = Google::UrlShortener::Url.new(long_url: long_url)
+      url.shorten!
     end
   end
 end

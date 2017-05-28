@@ -67,6 +67,7 @@ gem 'que'
 gem 'que-web'
 gem 'parse-cron'
 gem 'ostatus2'
+gem 'google_url_shortener'
 
 # model + data related gems
 gem 'feedjira'
