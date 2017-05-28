@@ -1,9 +1,11 @@
 nav.nav
   .nav-left
-    = link_to root_path, class: 'nav-item is-brand' do
-      = image_tag 'feed-default.png'
-      '
-      | Feedbot
+    .nav-item
+      = link_to root_path, class: 'nav-item is-brand' do
+        = image_tag 'feed-default.png'
+        '
+        ' &nbsp;
+        | Feedbot
 
   span#nav-toggle.nav-toggle
     span
