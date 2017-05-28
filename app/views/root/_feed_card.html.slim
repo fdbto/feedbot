@@ -1,0 +1,12 @@
+.card
+  .card-content
+    .media
+      .media-left
+        figure.image.is-48x48
+          = image_tag(feed.avatar.url(:thumb) || 'feedbot-logo.jpg', class: 'is-circle')
+      .media-content
+        p.title.is-4 = feed.title
+        p.subtitle.is-6 = link_to "@#{feed.slug}", "https://fdb.to/@#{feed.slug}", target: '_blank'
+    .content
+      = feed.description
+      small = short_datetime feed.last_posted_at

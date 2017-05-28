@@ -122,6 +122,22 @@ class Feed < ApplicationRecord
     included do
       mount_uploader :avatar, AvatarUploader
     end
+    def thumb_avatar_with_default
+      self.avatar.present? ? self.avatar.url(:thumb) : sample_image_url
+    end
+    private
+    def sample_image_url
+      if self.id.present?
+        m = self.id % 21
+      else
+        m = rand(21)
+      end
+      image_url(sprintf('sample-%03d.jpg', m))
+    end
+    def image_url(name)
+      raise unless ENV['CW_CDN_HOST'].present?
+      "#{ENV['CW_CDN_HOST']}/system/#{name}"
+    end
   end
 
   concerning :BotFeature do
@@ -154,7 +170,7 @@ class Feed < ApplicationRecord
 
   concerning :SortFeature do
     included do
-      scope :recently_posted, -> { order(last_posted_at: :desc) }
+      scope :recently_posted, -> { where.not(last_posted_at: nil).order(last_posted_at: :desc) }
     end
   end
 end

@@ -27,7 +27,7 @@ class FeedBot < ApplicationRecord
           note: self.description.to_s[0,160],
           url: self.url
       }
-      params[:avatar_url] = self.feed.avatar.url(:thumb) if self.feed.avatar.present?
+      params[:avatar_url] = self.feed.thumb_avatar_with_default
       r = Mastodon::User.create params
       follow_bot
       throw :abort if r[:response].status != 200

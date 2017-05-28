@@ -1,16 +1,18 @@
-.container
-  nav.nav
-    .nav-left
-      = link_to root_path, class: 'nav-item is-brand' do
-        = image_tag 'feedbot-logo.jpg'
-        '
-        | Feedbot
+nav.nav
+  .nav-left
+    = link_to root_path, class: 'nav-item is-brand' do
+      = image_tag 'feed-default.png'
+      '
+      | Feedbot
 
-    span#nav-toggle.nav-toggle
-      span
-      span
-      span
-    #nav-menu.nav-right.nav-menu
-      - if user_signed_in?
-        = link_to current_user.email, '#', class: 'nav-item'
-        =< link_to fa(:sign_out), destroy_user_session_path, method: :delete, class: 'nav-item'
+  span#nav-toggle.nav-toggle
+    span
+    span
+    span
+  #nav-menu.nav-right.nav-menu
+    - if user_signed_in?
+      = link_to current_user.email, '#', class: 'nav-item'
+      =< link_to fa(:sign_out), destroy_user_session_path, method: :delete, class: 'nav-item'
+    - else
+      = link_to user_mastodon_omniauth_authorize_path, class: 'nav-item' do
+        | Login using Mastodon

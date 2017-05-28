@@ -1,0 +1,5 @@
+.content
+  h2 Recent active feeds
+  .columns
+    .column = render partial: 'root/feed_card', collection: @feeds, as: :feed
+    .column = paginate @feeds

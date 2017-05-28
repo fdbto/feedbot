@@ -8,8 +8,10 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'shared/header'
-    = render 'shared/alerts'
     - if @no_container
+      = render 'shared/alerts'
       = yield
     - else
-      .container = yield
+      .section: .container
+        = render 'shared/alerts'
+        = yield

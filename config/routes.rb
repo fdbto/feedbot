@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :feeds do
+    collection do
+      get :public
+    end
     resources :feed_articles
   end
   resources :identities

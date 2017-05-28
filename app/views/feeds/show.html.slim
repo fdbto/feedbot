@@ -15,10 +15,9 @@
     tr
       th Verified:
       td = @feed.verified? ? "\u2705" : ''
-    - @feed.avatar.present?
-      tr
-        th Avatar:
-        td = image_tag(@feed.avatar.url(:thumb), size: '64x64')
+    tr
+      th Avatar:
+      td = image_tag(@feed.thumb_avatar_with_default, size: '64x64')
     tr
       th Last posted at:
       td = short_datetime @feed.last_posted_at

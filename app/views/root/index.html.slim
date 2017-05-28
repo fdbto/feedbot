@@ -1,7 +1,12 @@
-.container
-  h1 Welcome to feedbot service.
-
-  - if user_signed_in?
-    = link_to 'Logout', destroy_user_session_path, method: :delete
-  - else
-    = link_to 'Auth by Mastodon', user_mastodon_omniauth_authorize_path
+- @no_container = true
+- unless user_signed_in?
+  section.hero.is-medium.is-primary.is-bold
+    .hero-body
+      .container
+        h1.title Welcome to feedbot service.
+        h2.subtitle Create your own feedbot from RSS/Atom feed.
+.section: .container: .content
+  h2 Recent active feeds
+  .columns
+    .column = render partial: 'feed_card', collection: @recent_active_feeds, as: :feed
+    .column.is-pulled-right = link_to 'more', public_feeds_path
