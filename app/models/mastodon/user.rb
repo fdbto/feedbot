@@ -31,7 +31,7 @@ EOL
     command = <<EOL
 account = Account.find_by(username: #{q(username)})
 return false if account.blank?    
-PostStatusService.new.call(account, #{q(text)}, nil, visibility: :private)
+PostStatusService.new.call(account, #{q(text)}, nil, visibility: :unlisted)
 EOL
     RemoteCommandRunner.run(command)
   end
