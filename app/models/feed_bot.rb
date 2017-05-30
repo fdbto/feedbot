@@ -52,7 +52,7 @@ class FeedBot < ApplicationRecord
       url = entry.url || entry.links.try(:first)
       short_url = goo_gl!(url)
       content_max_length = 500 - (title.length + short_url.length + 2)
-      content = entry.content_text[0, content_max_length]
+      content = entry.content_text.gsub(/^#{title}\s*/, '')[0, content_max_length]
       text = <<EOL
 #{title}
 #{content}
