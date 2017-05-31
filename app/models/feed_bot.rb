@@ -53,12 +53,7 @@ class FeedBot < ApplicationRecord
       short_url = goo_gl!(url)
       content_max_length = 500 - (title.length + short_url.length + 2)
       content = entry.content_text.gsub(/^#{Regexp.escape(title)}\s*/, '')[0, content_max_length]
-      text = <<EOL
-#{title}
-#{content}
-#{short_url}
-EOL
-      text.chomp
+      text = [title.presence, content.presence, short_url.presence].compact.join("\n").chomp
     end
   end
   concerning :ShortenUrlFeature do
