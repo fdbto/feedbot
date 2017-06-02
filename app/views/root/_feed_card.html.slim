@@ -5,7 +5,10 @@
         figure.image.is-48x48
           = image_tag(feed.avatar.url(:thumb) || 'feedbot-logo.jpg', class: 'is-circle')
       .media-content
-        p.title.is-4 = feed.title
+        p.title.is-4
+          = feed.title
+          - if feed.verified?
+            =< "\u2705"
         p.subtitle.is-6 = link_to "@#{feed.slug}", "https://fdb.to/@#{feed.slug}", target: '_blank'
     .content
       = feed.description

@@ -1,10 +1,11 @@
 .content
   h1 Listing my feeds
 
+  .columns
+    .column.is-12: span(style="float: right") = link_to 'Register new feed', new_feed_path, class: 'button is-primary'
+
   = render 'feeds/feed_list'
 
   .columns
     .column.is-offset-8.is-4
       span(style="float: right") = link_to 'Show all', feeds_path
-
-  = link_to 'Register new feed', new_feed_path, class: 'button is-primary'
